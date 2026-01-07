@@ -1639,13 +1639,7 @@ document.addEventListener('DOMContentLoaded', function() {
         lastMove = Date.now();
     });
     
-    // Check if mouse is moving (detect if user is inspecting)
-    setInterval(function() {
-        if (Date.now() - lastMove > 3000) {
-            // User might be reading code in dev tools
-            showProtectionAlert('Aktivitas mencurigakan terdeteksi.');
-        }
-    }, 5000);
+    
 
     // 14. Initial protection message
     setTimeout(() => {
@@ -1675,3 +1669,4 @@ window.addEventListener('load', function() {
 
 
 </html>
+
