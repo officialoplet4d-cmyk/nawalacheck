@@ -1589,11 +1589,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
         
-        // Disable Ctrl+A (Select All)
-        if (e.ctrlKey && e.keyCode === 65) {
-            showProtectionAlert('Select all dinonaktifkan.');
-            return false;
-        }
+        
         
         // Disable Ctrl+C
         if (e.ctrlKey && e.keyCode === 67) {
@@ -1664,6 +1660,7 @@ window.addEventListener('load', function() {
 
 
 </html>
+
 
 
 
