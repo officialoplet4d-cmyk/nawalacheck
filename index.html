@@ -1,6 +1,4 @@
-export default {
-  async fetch(request, env, ctx) {
-    const html = `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +11,7 @@ export default {
     <meta name="author" content="BijiPeler.id">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEkSURBVHgB7ZbBDYJAEIZ/j0RSgVdgBbYhFUiB2oEXO9AOtAWpQDqgDUsg9y7GBM1l3T9gDvQleaElOzPf/qwLfC8iwFqoBgH+hIGJ1kCEX3hC25u3Uf0fBDgTBYpL0c6YC/VgeOqA+8HdDy7Ad8BkQb1QCLIWsMoXyMYFp8Jc0Iq5oH2zF5QxcdxrBGMnPG4yAFv6xN7lAPxNTggH4TQO0AYR2usAZnAFEaQ7gCG5jjAmNnMgt7A34XpBnt1eA8Zs3sABuNtADuTDAM6NOjch4IC/C9rCN+OgWjzL6Aoj7i5IMnVhi4Oo9loHuMCFLL3jAsqc0V5wAcpc0V5wAcpc0V5wAcq80F5wAcq80V5wAcpC0V5wAcrC0V5wAcq80V5wAcq80V5wAcqC0V5wAcpC0V5wAcpC0V5wAcqC0V5wAcpC0F5wAcpC0F5wAcqC0F5wAcpC0F5wAcq8/wP8AhdGB2/cLeGHAAAAAElFTkSuQmCC">
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAEkSURBVHgB7ZbBDYJAEIZ/j0RSgVdgBbYhFUiB2oEXO9AOtAWpQDqgDUsg9y7GBM1l3T9gDvQleeElOzPf/qwLfC8iwFqoBgH+hIGJ1kCEX3hC25u3Uf0fBDgTBYpL0c6YC/VgeOqA+8HdDy7Ad8BkQb1QCLIWsMoXyMYFp8Jc0Iq5oH2zF5QxcdxrBGMnPG4yAFv6xN7lAPxNTggH4TQO0AYR2usAZnAFEaQ7gCG5jjAmNnMgt7A34XpBnt1eA8Zs3sABuNtADuTDAM6NOjch4IC/C9rCN+OgWjzL6Aoj7i5IMnVhi4Oo9loHuMCFLL3jAsqc0V5wAcpc0V5wAcrc0V5wAcq80F5wAcq80V5wAcp80V5wAcr80V5wAcpC0V5wAcrC0V5wAcqC0V5wAcpC0V5wAcrC0F5wAcqC0F5wAcpC0F5wAcpC0F5wAcq8/wP8AhdGB2/cLeGHAAAAAElFTkSuQmCC">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
     <!-- Open Graph / Facebook -->
@@ -276,7 +274,7 @@ export default {
                 </div>
             </div>
             <h1 class="text-4xl md:text-6xl font-bold text-gray-800 dark:text-white mb-6">
-                Cek Status <span class="text-gradient">Pemblokiran</span>
+                Cek Status <span class="">Pemblokiran</span>
             </h1>
             <p class="text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-3xl mx-auto mb-8 leading-relaxed">
                 Periksa status akses website dari berbagai provider filter Indonesia.
@@ -766,7 +764,7 @@ blog.test.id"
                         'reddit.com',
                         'wikipedia.org'
                     ];
-                    document.getElementById('batch-url-input').value = sampleURLs.join('\\n');
+                    document.getElementById('batch-url-input').value = sampleURLs.join('\n');
                     this.updateURLCount();
                     this.showNotification('Contoh URL berhasil dimuat!', 'success');
                 });
@@ -793,14 +791,14 @@ blog.test.id"
                     return;
                 }
 
-                const urls = urlsText.split('\\n')
+                const urls = urlsText.split('\n')
                     .map(url => url.trim())
                     .filter(url => url.length > 0)
                     .map(url => this.normalizeURL(url));
 
                 if (urls.length === 0) return;
                 if (urls.length > 50) {
-                    this.showNotification(\`Maksimal 50 URL per batch. Anda memasukkan \${urls.length} URL.\`, 'error');
+                    this.showNotification(`Maksimal 50 URL per batch. Anda memasukkan ${urls.length} URL.`, 'error');
                     return;
                 }
 
@@ -808,11 +806,11 @@ blog.test.id"
             }
 
             normalizeURL(url) {
-                return url.replace(/^(https?:\\/\\/)?(www\\.)?/, '').split('/')[0];
+                return url.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
             }
 
             async performCheck(urls) {
-                this.showLoading(true, \`Memeriksa \${urls.length} URL...\`);
+                this.showLoading(true, `Memeriksa ${urls.length} URL...`);
 
                 const selectedProviders = Array.from(document.querySelectorAll('input[name="provider"]:checked'))
                     .map(cb => cb.value);
@@ -846,7 +844,7 @@ blog.test.id"
                 this.saveToHistory(results);
                 this.updateStats(urls.length);
                 
-                this.showNotification(\`\${urls.length} URL berhasil diperiksa!\`, 'success');
+                this.showNotification(`${urls.length} URL berhasil diperiksa!`, 'success');
             }
 
             generateMockStatus(url) {
@@ -900,9 +898,9 @@ blog.test.id"
                 document.getElementById('partial-count').textContent = partial;
                 
                 // Update progress bars
-                document.getElementById('accessible-bar').style.width = \`\${(accessible/total)*100}%\`;
-                document.getElementById('blocked-bar').style.width = \`\${(blocked/total)*100}%\`;
-                document.getElementById('partial-bar').style.width = \`\${(partial/total)*100}%\`;
+                document.getElementById('accessible-bar').style.width = `${(accessible/total)*100}%`;
+                document.getElementById('blocked-bar').style.width = `${(blocked/total)*100}%`;
+                document.getElementById('partial-bar').style.width = `${(partial/total)*100}%`;
 
                 // Show results section
                 section.classList.remove('hidden');
@@ -944,7 +942,7 @@ blog.test.id"
 
                 const status = statusColors[result.status] || statusColors.accessible;
 
-                card.className += \` \${status.border} \${status.bg}\`;
+                card.className += ` ${status.border} ${status.bg}`;
 
                 const providersHTML = Object.entries(result.providers)
                     .map(([provider, status]) => {
@@ -974,50 +972,50 @@ blog.test.id"
                         
                         const config = providerConfig[provider] || {};
                         
-                        return \`
-                            <div class="px-3 py-2 rounded-lg bg-gradient-to-r \${config.color} \${config.text} flex items-center gap-2 text-sm font-medium">
-                                <i class="fas \${config.icon}"></i>
-                                <span class="capitalize">\${provider}</span>
-                                <i class="fas \${statusIcons[status]} ml-1"></i>
+                        return `
+                            <div class="px-3 py-2 rounded-lg bg-gradient-to-r ${config.color} ${config.text} flex items-center gap-2 text-sm font-medium">
+                                <i class="fas ${config.icon}"></i>
+                                <span class="capitalize">${provider}</span>
+                                <i class="fas ${statusIcons[status]} ml-1"></i>
                             </div>
-                        \`;
+                        `;
                     })
                     .join('');
 
-                card.innerHTML = \`
+                card.innerHTML = `
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                         <div class="flex-1">
                             <div class="flex items-start gap-4">
-                                <div class="w-12 h-12 rounded-lg \${status.bg} flex items-center justify-center">
-                                    <i class="fas \${status.icon} \${status.text} text-xl"></i>
+                                <div class="w-12 h-12 rounded-lg ${status.bg} flex items-center justify-center">
+                                    <i class="fas ${status.icon} ${status.text} text-xl"></i>
                                 </div>
                                 <div class="flex-1">
                                     <div class="flex items-center gap-3 mb-2">
-                                        <span class="font-mono font-bold text-lg text-gray-800 dark:text-white">\${result.url}</span>
-                                        <span class="text-xs px-2 py-1 \${status.bg} \${status.text} rounded-full font-medium">
-                                            \${status.label}
+                                        <span class="font-mono font-bold text-lg text-gray-800 dark:text-white">${result.url}</span>
+                                        <span class="text-xs px-2 py-1 ${status.bg} ${status.text} rounded-full font-medium">
+                                            ${status.label}
                                         </span>
                                     </div>
                                     <div class="flex flex-wrap gap-2">
-                                        \${providersHTML}
+                                        ${providersHTML}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="flex gap-2">
                             <button class="copy-btn p-3 rounded-xl bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-sm" 
-                                    onclick="app.copyURL('\${result.url}')"
+                                    onclick="app.copyURL('${result.url}')"
                                     title="Salin URL">
                                 <i class="fas fa-copy text-gray-600 dark:text-gray-400"></i>
                             </button>
-                            <a href="https://\${result.url}" target="_blank" 
+                            <a href="https://${result.url}" target="_blank" 
                                class="p-3 rounded-xl bg-gradient-to-r from-blue-100 to-indigo-100 dark:from-blue-900/30 dark:to-indigo-900/30 hover:from-blue-200 hover:to-indigo-200 dark:hover:from-blue-800/30 dark:hover:to-indigo-800/30 shadow-sm"
                                title="Buka URL">
                                 <i class="fas fa-external-link-alt text-blue-600 dark:text-blue-400"></i>
                             </a>
                         </div>
                     </div>
-                \`;
+                `;
 
                 return card;
             }
@@ -1027,7 +1025,7 @@ blog.test.id"
                 const countSpan = document.getElementById('url-count');
                 const progressBar = document.getElementById('progress-bar');
                 
-                const urls = textarea.value.split('\\n')
+                const urls = textarea.value.split('\n')
                     .map(url => url.trim())
                     .filter(url => url.length > 0);
                 
@@ -1035,8 +1033,8 @@ blog.test.id"
                 const max = 50;
                 const percentage = Math.min((count / max) * 100, 100);
                 
-                countSpan.textContent = \`\${count}/\${max}\`;
-                progressBar.style.width = \`\${percentage}%\`;
+                countSpan.textContent = `${count}/${max}`;
+                progressBar.style.width = `${percentage}%`;
                 
                 // Update color based on count
                 countSpan.className = 'text-sm font-medium px-3 py-1 rounded-full ';
@@ -1091,12 +1089,12 @@ blog.test.id"
 
             updateLoadingProgress(progress) {
                 const loadingText = document.getElementById('loading-text');
-                loadingText.textContent = \`Memproses... \${Math.round(progress)}%\`;
+                loadingText.textContent = `Memproses... ${Math.round(progress)}%`;
             }
 
             showNotification(message, type = 'info') {
                 const notification = document.createElement('div');
-                notification.className = \`fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-xl transform translate-x-full opacity-0 transition-all duration-500 backdrop-blur-sm\`;
+                notification.className = `fixed top-6 right-6 z-50 px-6 py-4 rounded-xl shadow-xl transform translate-x-full opacity-0 transition-all duration-500 backdrop-blur-sm`;
                 
                 const typeConfig = {
                     success: {
@@ -1127,13 +1125,13 @@ blog.test.id"
                 
                 const config = typeConfig[type] || typeConfig.info;
                 
-                notification.className += \` \${config.bg} border \${config.border}\`;
-                notification.innerHTML = \`
+                notification.className += ` ${config.bg} border ${config.border}`;
+                notification.innerHTML = `
                     <div class="flex items-center gap-3">
-                        <i class="fas \${config.icon} text-xl \${config.text}"></i>
-                        <span class="\${config.text} font-medium">\${message}</span>
+                        <i class="fas ${config.icon} text-xl ${config.text}"></i>
+                        <span class="${config.text} font-medium">${message}</span>
                     </div>
-                \`;
+                `;
                 
                 document.body.appendChild(notification);
                 
@@ -1187,17 +1185,17 @@ blog.test.id"
                 const container = document.getElementById('history-list');
                 
                 if (history.length === 0) {
-                    container.innerHTML = \`
+                    container.innerHTML = `
                         <div class="text-center py-16 text-gray-500 dark:text-gray-400">
                             <i class="fas fa-history text-5xl mb-6 opacity-50"></i>
                             <p class="text-lg font-medium mb-2">Tidak ada riwayat pengecekan</p>
                             <p class="text-sm">Mulailah dengan mengecek beberapa URL</p>
                         </div>
-                    \`;
+                    `;
                     return;
                 }
                 
-                container.innerHTML = history.map(entry => \`
+                container.innerHTML = history.map(entry => `
                     <div class="group p-5 rounded-xl border border-gray-200 dark:border-gray-700 hover:border-indigo-300 dark:hover:border-indigo-700 transition-colors mb-4 last:mb-0">
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-3">
                             <div class="flex items-center gap-3">
@@ -1206,35 +1204,35 @@ blog.test.id"
                                 </div>
                                 <div>
                                     <div class="font-medium text-gray-800 dark:text-white">
-                                        \${new Date(entry.timestamp).toLocaleString('id-ID')}
+                                        ${new Date(entry.timestamp).toLocaleString('id-ID')}
                                     </div>
                                     <div class="text-sm text-gray-600 dark:text-gray-400">
-                                        \${entry.results.length} URL diperiksa
+                                        ${entry.results.length} URL diperiksa
                                     </div>
                                 </div>
                             </div>
                             <div class="flex gap-2">
                                 <span class="px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-green-100 to-emerald-100 dark:from-green-900/30 dark:to-emerald-900/30 text-green-700 dark:text-green-400">
-                                    \${entry.results.filter(r => r.status === 'accessible').length} Terbuka
+                                    ${entry.results.filter(r => r.status === 'accessible').length} Terbuka
                                 </span>
                                 <span class="px-3 py-1 rounded-full text-xs font-medium bg-gradient-to-r from-red-100 to-pink-100 dark:from-red-900/30 dark:to-pink-900/30 text-red-700 dark:text-red-400">
-                                    \${entry.results.filter(r => r.status === 'blocked').length} Diblokir
+                                    ${entry.results.filter(r => r.status === 'blocked').length} Diblokir
                                 </span>
                             </div>
                         </div>
                         <div class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                            \${entry.results.slice(0, 3).map(r => r.url).join(', ')}
-                            \${entry.results.length > 3 ? '...' : ''}
+                            ${entry.results.slice(0, 3).map(r => r.url).join(', ')}
+                            ${entry.results.length > 3 ? '...' : ''}
                         </div>
                         <div class="flex justify-end">
-                            <button onclick="app.viewHistoryDetail(\${entry.id})" 
+                            <button onclick="app.viewHistoryDetail(${entry.id})" 
                                     class="px-4 py-2 text-sm bg-gradient-to-r from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 hover:from-indigo-200 hover:to-purple-200 dark:hover:from-indigo-800/30 dark:hover:to-purple-800/30 text-indigo-700 dark:text-indigo-400 rounded-lg transition-colors flex items-center gap-2 group-hover:scale-105">
                                 <i class="fas fa-eye"></i>
                                 Lihat Detail
                             </button>
                         </div>
                     </div>
-                \`).join('');
+                `).join('');
             }
 
             clearHistory() {
@@ -1310,8 +1308,8 @@ blog.test.id"
                 document.getElementById('today-count').textContent = todayCount;
                 
                 const progress = Math.min(todayCount / 100 * 100, 100);
-                document.getElementById('today-progress').style.width = \`\${progress}%\`;
-                document.getElementById('today-progress-text').textContent = \`\${Math.round(progress)}%\`;
+                document.getElementById('today-progress').style.width = `${progress}%`;
+                document.getElementById('today-progress-text').textContent = `${Math.round(progress)}%`;
                 
                 // Update color based on progress
                 const progressBar = document.getElementById('today-progress');
@@ -1337,7 +1335,7 @@ blog.test.id"
                 const url = URL.createObjectURL(blob);
                 const link = document.createElement('a');
                 link.href = url;
-                link.setAttribute('download', \`cekblokir-\${new Date().toISOString().split('T')[0]}.csv\`);
+                link.setAttribute('download', `cekblokir-${new Date().toISOString().split('T')[0]}.csv`);
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -1360,7 +1358,7 @@ blog.test.id"
             convertToCSV(results) {
                 const headers = ['URL', 'Status', 'Provider', 'Timestamp'];
                 const rows = results.map(result => [
-                    \`"\${result.url}"\`,
+                    `"${result.url}"`,
                     result.status,
                     'Trustpositif,Nawala,DNS',
                     new Date().toISOString()
@@ -1369,7 +1367,7 @@ blog.test.id"
                 return [
                     headers.join(','),
                     ...rows.map(row => row.join(','))
-                ].join('\\n');
+                ].join('\n');
             }
 
             loadTheme() {
@@ -1507,7 +1505,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showProtectionAlert(message) {
         // Create alert element
         const alertDiv = document.createElement('div');
-        alertDiv.style.cssText = \`
+        alertDiv.style.cssText = `
             position: fixed;
             top: 20px;
             right: 20px;
@@ -1523,18 +1521,18 @@ document.addEventListener('DOMContentLoaded', function() {
             max-width: 300px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
-        \`;
+        `;
         
-        alertDiv.innerHTML = \`
+        alertDiv.innerHTML = `
             <div style="display: flex; align-items: center; gap: 10px;">
                 <i class="fas fa-shield-alt" style="font-size: 18px;"></i>
-                <div>\${message}</div>
+                <div>${message}</div>
             </div>
-        \`;
+        `;
         
         // Add styles for animations
         const style = document.createElement('style');
-        style.textContent = \`
+        style.textContent = `
             @keyframes slideIn {
                 from {
                     transform: translateX(100%);
@@ -1555,7 +1553,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     transform: translateX(100%);
                 }
             }
-        \`;
+        `;
         document.head.appendChild(style);
         
         document.body.appendChild(alertDiv);
@@ -1661,12 +1659,4 @@ window.addEventListener('load', function() {
 </body>
 
 
-</html>\`;
-
-    return new Response(html, {
-      headers: {
-        'content-type': 'text/html;charset=UTF-8',
-      },
-    });
-  },
-};
+</html>
