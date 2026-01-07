@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+export default {
+  async fetch(request, env, ctx) {
+    const html = <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -1657,9 +1659,14 @@ window.addEventListener('load', function() {
 })();
     </script>
 </body>
-
-
 </html>
+
+return new Response(html, {
+      headers: {
+        'content-type': 'text/html;charset=UTF-8',
+      },
+    });
+
 
 
 
