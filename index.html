@@ -1607,12 +1607,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return false;
         }
         
-        // Disable Ctrl+V
-        if (e.ctrlKey && e.keyCode === 86) {
-            showProtectionAlert('Paste dinonaktifkan.');
-            return false;
-        }
-    };
+        
 
     // 11. Disable frame busting protection bypass
     if (window.top !== window.self) {
@@ -1669,4 +1664,5 @@ window.addEventListener('load', function() {
 
 
 </html>
+
 
